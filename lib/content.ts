@@ -5,6 +5,7 @@
 const UNSPLASH = "https://images.unsplash.com/photo-";
 
 export function img(id: string, w = 1200, q = 80) {
+  if (id.startsWith("/")) return id;
   return `${UNSPLASH}${id}?auto=format&fit=crop&w=${w}&q=${q}`;
 }
 
@@ -18,7 +19,7 @@ export const contact = {
 };
 
 export const heroFloats = [
-  { id: "1601050690597-df0568f70950", alt: "Crispy fried samosas" },
+  { id: "/tindi-logo.svg", alt: "Tindi and Co Logo" },
   { id: "1606755962773-d324e0a13086", alt: "Golden fried chicken" },
   { id: "1610440042657-612c34d95e9f", alt: "Crisp spring rolls" },
   { id: "1585032226651-759b368d7246", alt: "Onion rings" },
