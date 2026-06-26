@@ -38,23 +38,31 @@ function Float({
   return (
     <motion.div
       style={reduce ? undefined : { x: tx, y: ty }}
-      initial={reduce ? false : { opacity: 0, scale: 0.7 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, delay: 0.3 + index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-      className={`absolute ${FLOAT_POS[index]} ${
-        index === 0
-          ? ""
-          : "overflow-hidden rounded-full border-4 border-[var(--color-cream)] shadow-[0_24px_60px_-20px_rgba(18,60,54,0.45)]"
-      }`}
+      className={`absolute ${FLOAT_POS[index]} z-10`}
     >
-      <Image
-        src={img(f.id, 700)}
-        alt={f.alt}
-        fill
-        sizes="(max-width: 768px) 60vw, 30vw"
-        className={index === 0 ? "object-contain" : "object-cover"}
-        priority={index === 0}
-      />
+      <motion.div
+        initial={reduce ? false : { opacity: 0, scale: 0.7, y: 0 }}
+        animate={reduce ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1, y: [0, d > 0 ? -15 : 15, 0] }}
+        transition={{
+          opacity: { duration: 0.8, delay: 0.3 + index * 0.12, ease: [0.16, 1, 0.3, 1] },
+          scale: { duration: 0.8, delay: 0.3 + index * 0.12, ease: [0.16, 1, 0.3, 1] },
+          y: { duration: 4 + (index % 3), repeat: Infinity, ease: "easeInOut" }
+        }}
+        className={`relative h-full w-full ${
+          index === 0
+            ? ""
+            : "overflow-hidden rounded-full border-4 border-[var(--color-cream)] shadow-[0_24px_60px_-20px_rgba(18,60,54,0.45)]"
+        }`}
+      >
+        <Image
+          src={img(f.id, 700)}
+          alt={f.alt}
+          fill
+          sizes="(max-width: 768px) 60vw, 30vw"
+          className={index === 0 ? "object-contain" : "object-cover"}
+          priority={index === 0}
+        />
+      </motion.div>
     </motion.div>
   );
 }
@@ -175,38 +183,46 @@ function SpinBadge({ reduce, sx, sy }: { reduce: boolean; sx: MotionValue<number
   return (
     <motion.div
       style={reduce ? undefined : { x: tx, y: ty }}
-      initial={reduce ? false : { opacity: 0, scale: 0.6 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-      className="absolute -left-2 top-2 z-20 h-24 w-24 sm:h-28 sm:w-28 hover:scale-105 transition-transform"
+      className="absolute -left-2 top-2 z-20 h-24 w-24 sm:h-28 sm:w-28"
     >
-      <svg
-        viewBox="0 0 200 200"
-        className="h-full w-full"
-        style={{
-          animation: reduce ? "none" : "spin 18s linear infinite",
+      <motion.div
+        initial={reduce ? false : { opacity: 0, scale: 0.6, y: 0 }}
+        animate={reduce ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1, y: [0, -10, 0] }}
+        transition={{
+          opacity: { duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] },
+          scale: { duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] },
+          y: { duration: 5, repeat: Infinity, ease: "easeInOut" }
         }}
+        className="relative h-full w-full hover:scale-105 transition-transform"
       >
-        <defs>
-          <path
-            id="badge-curve"
-            d="M 100,100 m -74,0 a 74,74 0 1,1 148,0 a 74,74 0 1,1 -148,0"
-          />
-        </defs>
-        <circle cx="100" cy="100" r="92" fill="var(--color-green)" />
-        <text
-          fill="var(--color-cream)"
-          fontSize="17"
-          fontWeight="700"
-          letterSpacing="3"
-          style={{ fontFamily: "var(--font-display)", textTransform: "uppercase" }}
+        <svg
+          viewBox="0 0 200 200"
+          className="h-full w-full"
+          style={{
+            animation: reduce ? "none" : "spin 18s linear infinite",
+          }}
         >
-          <textPath href="#badge-curve" startOffset="0">
-            Quality today · Trust forever · Quality today ·
-          </textPath>
-        </text>
-      </svg>
-      <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+          <defs>
+            <path
+              id="badge-curve"
+              d="M 100,100 m -74,0 a 74,74 0 1,1 148,0 a 74,74 0 1,1 -148,0"
+            />
+          </defs>
+          <circle cx="100" cy="100" r="92" fill="var(--color-green)" />
+          <text
+            fill="var(--color-cream)"
+            fontSize="17"
+            fontWeight="700"
+            letterSpacing="3"
+            style={{ fontFamily: "var(--font-display)", textTransform: "uppercase" }}
+          >
+            <textPath href="#badge-curve" startOffset="0">
+              Quality today · Trust forever · Quality today ·
+            </textPath>
+          </text>
+        </svg>
+        <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+      </motion.div>
     </motion.div>
   );
 }
