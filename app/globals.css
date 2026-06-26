@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   TINDI & CO - brand tokens
+   Two-colour system only: deep green + cream (per brand guidelines).
+   Tints below are derived from those two for depth, never new hues.
+------------------------------------------------------------------ */
+@theme {
+  --color-green: #123c36;
+  --color-green-deep: #0d2b27;
+  --color-green-soft: #1c4a43;
+  --color-cream: #f8f6f1;
+  --color-cream-warm: #efeae0;
+  --color-cream-line: #e3ddd0;
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-cream);
+  color: var(--color-green);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-green);
+  color: var(--color-cream);
+}
+
+/* Kinetic marquee track */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Reduced motion: collapse all decorative/scroll motion to static */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
