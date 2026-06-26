@@ -99,7 +99,7 @@ export default function Hero() {
             {headline.map((word, i) => (
               <span key={word} className="mr-[0.28ch] inline-block overflow-hidden pb-1 align-bottom">
                 <motion.span
-                  className={`inline-block ${word === "crunch" ? "italic" : ""}`}
+                  className={`inline-block ${word === "crunch" ? "italic pr-[0.1em]" : ""}`}
                   initial={reduce ? false : { y: "110%" }}
                   animate={{ y: "0%" }}
                   transition={{
