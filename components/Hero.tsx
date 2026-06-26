@@ -161,20 +161,24 @@ export default function Hero() {
           ))}
 
           {/* slow-spinning brand badge */}
-          <SpinBadge reduce={!!reduce} />
+          <SpinBadge reduce={!!reduce} sx={sx} sy={sy} />
         </div>
       </div>
     </section>
   );
 }
 
-function SpinBadge({ reduce }: { reduce: boolean }) {
+function SpinBadge({ reduce, sx, sy }: { reduce: boolean; sx: MotionValue<number>; sy: MotionValue<number> }) {
+  const tx = useTransform(sx, [-0.5, 0.5], [-35, 35]);
+  const ty = useTransform(sy, [-0.5, 0.5], [-35, 35]);
+
   return (
     <motion.div
+      style={reduce ? undefined : { x: tx, y: ty }}
       initial={reduce ? false : { opacity: 0, scale: 0.6 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-      className="absolute -left-2 top-2 z-20 h-24 w-24 sm:h-28 sm:w-28"
+      className="absolute -left-2 top-2 z-20 h-24 w-24 sm:h-28 sm:w-28 hover:scale-105 transition-transform"
     >
       <svg
         viewBox="0 0 200 200"
