@@ -13,7 +13,7 @@ import { ArrowRight } from "@phosphor-icons/react";
 import { heroFloats, img } from "@/lib/content";
 
 const FLOAT_POS = [
-  "left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 sm:h-72 sm:w-72 lg:h-80 lg:w-80",
+  "left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 sm:h-[25rem] sm:w-[25rem] lg:h-[28rem] lg:w-[28rem]",
   "right-0 top-2 h-28 w-28 sm:h-36 sm:w-36",
   "left-0 bottom-6 h-32 w-32 sm:h-40 sm:w-40",
   "right-6 bottom-0 h-24 w-24 sm:h-28 sm:w-28",
