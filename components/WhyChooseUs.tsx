@@ -7,17 +7,21 @@ import { reasons } from "@/lib/content";
 export default function WhyChooseUs() {
   const reduce = useReducedMotion();
   return (
-    <section className="bg-[var(--color-cream)] py-24 sm:py-32">
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-x-12 gap-y-14 px-5 lg:grid-cols-[0.8fr_1.2fr]">
-        <motion.h2
-          initial={reduce ? false : { opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-[clamp(2.4rem,5vw,4rem)] font-extrabold leading-[0.95] tracking-tight text-[var(--color-green)] lg:sticky lg:top-28 lg:self-start"
-        >
-          What sets the crunch apart.
-        </motion.h2>
+    <section className="bg-[var(--color-cream)] pt-24 pb-0 sm:pt-32 lg:pb-32">
+      <div className="mx-auto block w-full max-w-6xl px-5 lg:grid lg:grid-cols-[0.8fr_1.2fr] lg:gap-x-12">
+        <div className="pointer-events-none sticky top-0 z-20 -mx-5 -mt-[90px] mb-7 bg-[var(--color-cream)] pt-[90px] lg:mb-0 lg:top-28 lg:self-start lg:mx-0 lg:-mt-0 lg:bg-transparent lg:pt-0">
+          <div className="px-5 pb-7 lg:px-0 lg:pb-0">
+            <motion.h2
+              initial={reduce ? false : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="pointer-events-auto font-display text-[clamp(2.4rem,5vw,4rem)] font-extrabold leading-[0.95] tracking-tight text-[var(--color-green)]"
+            >
+              What sets the crunch apart.
+            </motion.h2>
+          </div>
+        </div>
 
         <motion.div
           variants={reduce ? undefined : staggerParent}
@@ -41,6 +45,9 @@ export default function WhyChooseUs() {
             </motion.div>
           ))}
         </motion.div>
+        
+        {/* Spacer for mobile to allow all reasons to scroll fully behind the sticky header before the container ends */}
+        <div className="h-[250px] lg:hidden" aria-hidden="true" />
       </div>
     </section>
   );
