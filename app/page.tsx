@@ -6,6 +6,7 @@ import Categories from "@/components/Categories";
 import Benefits from "@/components/Benefits";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Connect from "@/components/Connect";
+import ParentCompany from "@/components/ParentCompany";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
         <Benefits /> {/* green */}
         <WhyChooseUs /> {/* cream */}
         <Connect /> {/* green */}
+        <ParentCompany /> {/* cream */}
       </main>
       <Footer /> {/* green-deep */}
     </>

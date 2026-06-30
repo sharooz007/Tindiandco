@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   title: "TINDI & CO | Frozen Foods & Snacks",
   description:
     "The crunch side of snacks. TINDI & CO brings the finest ready-to-cook frozen foods and crispy snacks to every home. Quality today, trust forever.",
+  icons: {
+    icon: "/tindi-logo.svg",
+    shortcut: "/tindi-logo.svg",
+    apple: "/tindi-logo.svg",
+  },
   openGraph: {
     title: "TINDI & CO | The Crunch Side Of Snacks",
     description:

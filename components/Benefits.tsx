@@ -23,18 +23,24 @@ export default function Benefits() {
     if (!enhance || !wrap.current || !track.current) return;
     const ctx = gsap.context(() => {
       const distance = () => track.current!.scrollWidth - window.innerWidth;
-      gsap.to(track.current, {
-        x: () => -distance(),
-        ease: "none",
+      
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: wrap.current,
           start: "top top", // pin once the section top reaches viewport top
-          end: () => `+=${distance()}`, // scroll length equals horizontal travel
+          end: () => `+=${distance() * 1.25}`, // extra 25% scroll length for the pause
           pin: true,
           scrub: 1,
           invalidateOnRefresh: true,
         },
       });
+
+      tl.to(track.current, {
+        x: () => -distance(),
+        ease: "none",
+        duration: 1,
+      })
+      .to({}, { duration: 0.25 }); // 25% pause at the end holding the last card in view
     }, wrap);
     return () => ctx.revert();
   }, [enhance]);
@@ -46,7 +52,7 @@ export default function Benefits() {
     >
       <div
         ref={track}
-        className={`flex h-[100dvh] items-center gap-6 px-5 ${
+        className={`flex h-[100dvh] items-center gap-6 px-6 ${
           enhance ? "w-max" : "w-full overflow-x-auto snap-x snap-mandatory"
         }`}
       >
