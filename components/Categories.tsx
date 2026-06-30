@@ -16,9 +16,9 @@ const heights = ["h-[24rem] sm:h-[28rem]", "h-[24rem] sm:h-[28rem]", "h-[20rem] 
 export default function Categories() {
   const reduce = useReducedMotion();
   return (
-    <section id="products" className="bg-[var(--color-cream)] py-24 sm:py-32">
+    <section id="products" className="bg-[var(--color-cream)] pt-24 sm:pt-32">
       <div className="mx-auto w-full max-w-6xl px-5">
-        <div className="mb-12">
+        <div className="pointer-events-none sticky top-0 z-20 -mx-5 -mt-[90px] mb-0 px-5 pb-6 pt-[90px] bg-[var(--color-cream)]">
           <motion.h2
             initial={reduce ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -73,6 +73,9 @@ export default function Categories() {
             </motion.a>
           ))}
         </motion.div>
+        
+        {/* Spacer to extend the sticky track, allowing cards to fully hide before un-sticking */}
+        <div className="h-24 sm:h-32" aria-hidden="true" />
       </div>
     </section>
   );
