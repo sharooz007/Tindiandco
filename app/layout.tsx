@@ -30,21 +30,12 @@ export const metadata: Metadata = {
     description:
       "Ready-to-cook frozen foods and crispy takeaway snacks. Quality today, trust forever.",
     type: "website",
-    images: [
-      {
-        url: "/Preview.jpg",
-        width: 1200,
-        height: 630,
-        alt: "TINDI & CO | Frozen Foods & Snacks",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "TINDI & CO | The Crunch Side Of Snacks",
     description:
       "Ready-to-cook frozen foods and crispy takeaway snacks. Quality today, trust forever.",
-    images: ["/Preview.jpg"],
   },
 };
 
